@@ -1,5 +1,4 @@
-# Checks if User's Input was either a Yes or No
-# If User inputs something else, it displays error message
+# Checks if User's Input is in the Shapes List
 def select_shape(question):
 
     shapes_list =  ["circle", "square", "triangle", "rectangle"]
@@ -11,12 +10,13 @@ def select_shape(question):
         # If the response is inside the list
         for var_item in shapes_list:
             # And the response is either the word or the first 
-            # letter of the word, returns the entire word
+            # letter of the word, return the entire word
             if response == var_item:
                 return response
             elif response == var_item[0]:
                 return var_item
             
+        # Else print error message
         print("Please choose from: Circle (c), Square (s), Triangle (t), or Rectangle (r)\n")
 
 # Main Routine...
