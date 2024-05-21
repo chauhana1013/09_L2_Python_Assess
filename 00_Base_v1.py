@@ -31,6 +31,29 @@ def list_checker(question, chosen_list, error_message):
         # Else print error message
         print(error_message)
 
+# Checks User Input is a number
+def num_check(number, error_message, exit_code):
+    while True:
+
+        # First checks if the user entered the exit code
+        response = input(number).lower()
+        
+        if response == exit_code:
+            return response
+
+        # If not, then it checks if input was a number
+        try:
+            response = float(response)
+    	    
+            if response <= 0:
+                print(error_message)
+            
+            else:
+                return response
+
+        except ValueError:
+            print(error_message)
+
 
 
 
@@ -43,8 +66,14 @@ yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no
 if yes_no_instructions == "yes": 
     print("Instructions go here...")
 
+while True:
+    print()
+    chosen_shape = list_checker("Please select a shape (Circle, Square, Triangle, or Rectangle)? ", "shapes", "Please choose from: Circle (c), Square (s), Triangle (t), or Rectangle (r)\n")
 
-print()
-chosen_shape = list_checker("Please select a shape (Circle, Square, Triangle, or Rectangle)? ", "shapes", "Please choose from: Circle (c), Square (s), Triangle (t), or Rectangle (r)\n")
+    print(f"You chose {chosen_shape}")
 
-print(f"You chose {chosen_shape}")
+    number_entered = num_check("Number (Enter 'xxx' to quit)? ", "Please enter a number more than 0", "xxx")
+    
+    # If exit code entered, Program Ends
+    if number_entered == "xxx":
+        break
