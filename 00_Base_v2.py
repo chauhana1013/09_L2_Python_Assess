@@ -1,6 +1,7 @@
+# Imports up here...
 import math
 
-# Functions
+# Functions go here... 
 
 # Checks if User's Input is in given list
 def list_checker(question, chosen_list, error_message):
@@ -32,7 +33,6 @@ def list_checker(question, chosen_list, error_message):
         print(error_message)
 
 
-
 # Checks User Input is a number
 def num_check(number):
     while True:
@@ -49,6 +49,15 @@ def num_check(number):
         except ValueError:
             print("Please enter a number more than 0")
 
+
+
+# Main Routine...
+        
+print()
+yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no", "Please enter either yes or no...\n")
+
+if yes_no_instructions == "yes": 
+    print("Instructions go here...")
 
 # Main Routine...
 while True:
@@ -84,7 +93,7 @@ while True:
         
         # Else, just asks base and height
         else:
-            side1 = num_check("Length of Base? ")
+            side1 = num_check("Base? ")
             height = num_check("Height? ")
     
     else:
