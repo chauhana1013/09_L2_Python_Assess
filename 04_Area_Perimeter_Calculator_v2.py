@@ -102,8 +102,9 @@ while True:
     elif chosen_shape == "triangle":
 
         if have_all_sides == "yes":
-            perimeter = side1 + side2 + side3          
-            area = math.sqrt((side1 + side2 + side3 / 2) * ((side1 + side2 + side3 / 2) - side1) * ((side1 + side2 + side3 / 2) - side2) * ((side1 + side2 + side3 / 2) - side3))
+            perimeter = side1 + side2 + side3  
+            s = side1 + side2 + side3 / 2        
+            area = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
                
         else:
             area = side1 * height * 0.5
@@ -112,6 +113,17 @@ while True:
     else:
         area = math.pi * (length * length)  
         perimeter = 2 * math.pi * length
+
+    # Checks if area and perimeter are whole numbers or numbers with decimals
+    if area % 1 == 0:
+        area = math.ceil(area)
+    else:
+        area = round(area, 2)
+    
+    if perimeter % 1 == 0:
+        perimeter = math.ceil(perimeter)
+    else:
+        perimeter = round(perimeter, 2)
 
     print(f"Area: {area} , Perimeter: {perimeter}")
 
