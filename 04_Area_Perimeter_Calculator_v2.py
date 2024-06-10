@@ -62,10 +62,14 @@ while True:
     # Depending on chosen shape, program asks different lengths
     if chosen_shape == "square":
         length = num_check("Length? ")
+        area = length * length
+        perimeter = length * 4
     
     elif chosen_shape == "rectangle":
         length = num_check("Length? ")
         height = num_check("Width? ")
+        area = length * height
+        perimeter = (length + height) * 2
     
     elif chosen_shape == "triangle":
         # Asks user if they have all three sides of the triangle
@@ -81,38 +85,23 @@ while True:
             if side1 + side2 < side3 or side3 + side2 < side1 or side3 + side1 < side2:
                 print("This is an Impossible Triangle")
                 continue
+            else:    
+                perimeter = side1 + side2 + side3  
+                s = side1 + side2 + side3 / 2        
+                area = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
         
         # Else, just asks base and height
         else:
             side1 = num_check("Length of Base? ")
             height = num_check("Height? ")
-    
-    else:
-        length = num_check("Radius? ")
-
-    # Shape Formulas & Calculations
-    if chosen_shape == "square":
-        area = length * length
-        perimeter = length * 4
-    
-    elif chosen_shape == "rectangle":
-        area = length * height
-        perimeter = (length + height) * 2
-    
-    elif chosen_shape == "triangle":
-
-        if have_all_sides == "yes":
-            perimeter = side1 + side2 + side3  
-            s = side1 + side2 + side3 / 2        
-            area = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
-               
-        else:
             area = side1 * height * 0.5
             perimeter = "N/A"
     
     else:
+        length = num_check("Radius? ")
         area = math.pi * (length * length)  
         perimeter = 2 * math.pi * length
+
 
     # Checks if area and perimeter are whole numbers or numbers with decimals
     # And rounds accordingly
@@ -121,7 +110,6 @@ while True:
     else:
         area = round(area, 2)
     
-
     if perimeter == "N/A":
         perimeter = "N/A"
 

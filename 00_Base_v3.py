@@ -1,5 +1,6 @@
 # Imports up here...
 import math
+import pandas
 
 # Functions go here... 
 
@@ -94,6 +95,7 @@ while True:
             if side1 + side2 < side3 or side3 + side2 < side1 or side3 + side1 < side2:
                 print("This is an Impossible Triangle")
                 continue
+            
             else:    
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
@@ -129,6 +131,24 @@ while True:
 
     print(f"Area: {area} , Perimeter: {perimeter}")
 
+
+question_answer_dict = {
+    "Shape": chosen_shape,
+    "Length": lengths_given,
+    "Area": area,
+    "Perimeter": perimeter
+}
+
+
+question_answer_frame = pandas.DataFrame(question_answer_dict)
+
+# Change Dataframe to String (so it can be written to a txt file)
+question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
+
+file_name_inputed = "Pandas Formating Testing #1"
+
+
+to_write = [file_name_inputed, question_answer_text, ]
 
 
 print("Program ends")
