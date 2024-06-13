@@ -60,8 +60,21 @@ yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no
 if yes_no_instructions == "yes": 
     print("Instructions go here...")
 
+shape_list = []
+lengths_given_list = []
+area_list = []
+perimeter_list = []
+
 # Main Routine...
 while True:
+
+    question_answer_dict = {
+    "Shape": shape_list,
+    "Length": lengths_given_list,
+    "Area": area_list,
+    "Perimeter": perimeter_list
+    }
+
     print()
     # Asks user for shape chosen
     chosen_shape = list_checker("Please select a shape (Circle, Square, Triangle, Rectangle or 'xxx' to quit)? ", "shapes", "Please choose from: Circle (c), Square (s), Triangle (t), Rectangle (r) or 'xxx' to quit\n")
@@ -74,12 +87,14 @@ while True:
         length = num_check("Length? ")
         area = length * length
         perimeter = length * 4
-    
+        lengths_given = f"Length: {length}"
+
     elif chosen_shape == "rectangle":
         length = num_check("Length? ")
         height = num_check("Width? ")
         area = length * height
         perimeter = (length + height) * 2
+        lengths_given = f"Length: {length} \n Width: {height}"
     
     elif chosen_shape == "triangle":
         # Asks user if they have all three sides of the triangle
@@ -100,18 +115,22 @@ while True:
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
                 area = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
-        
+                lengths_given = f"Three Sides: \n {side1}, {side2}, {side3}"
+
         # Else, just asks base and height
         else:
             side1 = num_check("Length of Base? ")
             height = num_check("Height? ")
             area = side1 * height * 0.5
             perimeter = "N/A"
-    
+            lengths_given = f"Base: {side1} \n Height: {height}"
+
+
     else:
         length = num_check("Radius? ")
         area = math.pi * (length * length)  
         perimeter = 2 * math.pi * length
+        lengths_given = f"Radius: {length}"
 
 
     # Checks if area and perimeter are whole numbers or numbers with decimals
@@ -131,14 +150,10 @@ while True:
 
     print(f"Area: {area} , Perimeter: {perimeter}")
 
-
-question_answer_dict = {
-    "Shape": chosen_shape,
-    "Length": lengths_given,
-    "Area": area,
-    "Perimeter": perimeter
-}
-
+    shape_list.append(chosen_shape)
+    lengths_given_list.append(lengths_given)
+    area_list.append(area)
+    perimeter_list.append(perimeter)
 
 question_answer_frame = pandas.DataFrame(question_answer_dict)
 
@@ -148,7 +163,10 @@ question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
 file_name_inputed = "Pandas Formating Testing #1"
 
 
-to_write = [file_name_inputed, question_answer_text, ]
+to_write = [file_name_inputed, question_answer_text]
 
+for items in to_write:
+    print(items)
+    print()
 
 print("Program ends")
