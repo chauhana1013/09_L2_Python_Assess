@@ -197,7 +197,7 @@ if calculations_done >= 1:
 
     # Write to file...
     # Creat file to hold data (add .txt extension)
-    file_name = f"{product_name_inputted}.txt"
+    file_name = f"{file_name_inputed}.txt"
     text_file = open(file_name, "w+")
 
     # Heading
