@@ -195,6 +195,20 @@ if calculations_done >= 1:
 
     to_write = [file_name_inputed, unit_text, question_answer_text]
 
+    # Write to file...
+    # Creat file to hold data (add .txt extension)
+    file_name = f"{product_name_inputted}.txt"
+    text_file = open(file_name, "w+")
+
+    # Heading
+    for item in to_write:
+        text_file.write(item)
+        text_file.write("\n\n")
+
+    # Close File
+    text_file.close()
+
+
     for items in to_write:
         print(items)
         print()
