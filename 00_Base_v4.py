@@ -50,6 +50,17 @@ def num_check(number):
         except ValueError:
             print("Please enter a number more than 0")
 
+def rounding(variable):
+    
+    while True:
+        if variable % 1 == 0:
+            variable = math.ceil(variable)
+        else:
+            variable = round(variable, 2)
+        return variable
+
+
+
 # Main Routine...
 print()
 yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no", "Please enter either yes or no...\n")
@@ -62,6 +73,7 @@ lengths_given_list = []
 area_list = []
 perimeter_list = []
 
+calculations_done = 0
 
 # Main Routine...
 while True:
@@ -85,6 +97,8 @@ while True:
         length = num_check("Length? ")
         area = length * length
         perimeter = length * 4
+        length = rounding(length)
+        shape_given = "Square"
         lengths_given = f"Length: {length}"
 
     elif chosen_shape == "rectangle":
@@ -92,6 +106,9 @@ while True:
         height = num_check("Width? ")
         area = length * height
         perimeter = (length + height) * 2
+        length = rounding(length)
+        height = rounding(height)
+        shape_given = "Rectangle"
         lengths_given = f"Length: {length} Width: {height}"
 
     
@@ -114,6 +131,10 @@ while True:
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
                 area = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
+                side1 = rounding(side1)
+                side2 = rounding(side2)
+                side3 = rounding(side3)
+                shape_given = "Triangle"
                 lengths_given = f"Three Sides: {side1}, {side2}, {side3}"
 
         # Else, just asks base and height
@@ -122,52 +143,55 @@ while True:
             height = num_check("Height? ")
             area = side1 * height * 0.5
             perimeter = "N/A"
+            side1 = rounding(side1)
+            height = rounding(height)
+            shape_given = "Triangle"
             lengths_given = f"Base: {side1} Height: {height}"
-
+        
 
     else:
         length = num_check("Radius? ")
         area = math.pi * (length * length)  
         perimeter = 2 * math.pi * length
+        length = rounding(length)
+        shape_given = "Circle"
         lengths_given = f"Radius: {length}"
+        
     
-    
-    # Checks if area and perimeter are whole numbers or numbers with decimals
-    # And rounds accordingly
-    if area % 1 == 0:
-        area = math.ceil(area)
-    else:
-        area = round(area, 2)
-    
+    area = rounding(area)
+
     if perimeter == "N/A":
         perimeter = "N/A"
-
-    elif perimeter % 1 == 0:
-        perimeter = math.ceil(perimeter)
+        unit = ""
+    
     else:
-        perimeter = round(perimeter, 2)
+        perimeter = rounding(perimeter)
+        unit = " U"
 
+    area_given = f"{area} SU"
+    perimeter_given = f"{perimeter}{unit}"
     print(f"Area: {area}, Perimeter: {perimeter}")
 
 
-    shape_list.append(chosen_shape)
+    shape_list.append(shape_given)
     lengths_given_list.append(lengths_given)
-    area_list.append(area)
-    perimeter_list.append(perimeter)
+    area_list.append(area_given)
+    perimeter_list.append(perimeter_given)
 
-question_answer_frame = pandas.DataFrame(question_answer_dict)
-
-
-# Change Dataframe to String (so it can be written to a txt file)
-question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
-
-file_name_inputed = "Pandas Formating Testing #1"
+if calculations_done >= 1:
+    question_answer_frame = pandas.DataFrame(question_answer_dict).set_index("Shape")
 
 
-to_write = [file_name_inputed, question_answer_text]
+    # Change Dataframe to String (so it can be written to a txt file)
+    question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
 
-for items in to_write:
-    print(items)
-    print()
+    file_name_inputed = "Pandas Formating Testing #1"
+    unit_text = "Rememeber: Square Units (SU) & Units (U)"
+
+    to_write = [file_name_inputed, unit_text, question_answer_text]
+
+    for items in to_write:
+        print(items)
+        print()
 
 print("Program ends")
