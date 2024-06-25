@@ -147,9 +147,11 @@ while True:
     else:
         perimeter = round(perimeter, 2)
 
+    # Outputs Area and Perimeter
     print(f"Area: {area}, Perimeter: {perimeter}")
 
-
+    # Adds the following values into their respective lists
+    # But there are couple issues
     shape_list.append(chosen_shape)
     lengths_given_list.append(lengths_given)
     area_list.append(area)
@@ -161,9 +163,8 @@ question_answer_frame = pandas.DataFrame(question_answer_dict)
 # Change Dataframe to String (so it can be written to a txt file)
 question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
 
+# Outputs the Dataframe...
 file_name_inputed = "Pandas Formating Testing #1"
-
-
 to_write = [file_name_inputed, question_answer_text]
 
 for items in to_write:

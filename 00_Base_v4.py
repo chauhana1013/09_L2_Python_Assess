@@ -170,6 +170,7 @@ while True:
         perimeter = rounding(perimeter)
         unit = " U"
 
+    # Outputs Area and Perimeter
     area_given = f"{area} SU"
     perimeter_given = f"{perimeter}{unit}"
     print(f"Area: {area}, Perimeter: {perimeter}")
@@ -184,16 +185,13 @@ while True:
 
 # Only displays the Data Frame if 1 or more calculations have been done
 if calculations_done >= 1:
-    question_answer_frame = pandas.DataFrame(question_answer_dict).set_index("Shape")
-
-
-    # Change Dataframe to String (so it can be written to a txt file)
-    question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
-
+    question_answer_frame = pandas.DataFrame(question_answer_dict).set_index("Shape") 
+    
+    # Outputs the Dataframe...
     file_name_inputed = "Pandas Formating Testing #1"
     unit_text = "Rememeber: Square Units (SU) & Units (U)"
 
-    to_write = [file_name_inputed, unit_text, question_answer_text]
+    to_write = [file_name_inputed, unit_text, question_answer_frame]
 
     for items in to_write:
         print(items)

@@ -61,6 +61,18 @@ def rounding(variable):
             variable = round(variable, 2)
         return variable
 
+# Checks that user response is not blank
+def not_blank(question):
+
+    while True:
+        response = input(question).strip(None)
+
+        # If user's response is blank, program displays this message
+        if response == "":
+            print("Sorry this can't be blank. Please try again")
+        
+        else:
+            return response
 
 
 # Main Routine...
@@ -69,6 +81,10 @@ yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no
 
 if yes_no_instructions == "yes": 
     print("Instructions go here...")
+
+print()
+file_name_inputed = not_blank("File Name: ")
+
 
 shape_list = []
 lengths_given_list = []
@@ -159,7 +175,7 @@ while True:
         shape_given = "Circle"
         lengths_given = f"Radius: {length}"
         
-    
+    # Rounda the Area and The Perimeter
     area = rounding(area)
 
     if perimeter == "N/A":
@@ -170,6 +186,7 @@ while True:
         perimeter = rounding(perimeter)
         unit = " U"
 
+    # Outputs Area and Perimeter
     area_given = f"{area} SU"
     perimeter_given = f"{perimeter}{unit}"
     print(f"Area: {area}, Perimeter: {perimeter}")
@@ -190,10 +207,14 @@ if calculations_done >= 1:
     # Change Dataframe to String (so it can be written to a txt file)
     question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
 
-    file_name_inputed = "Pandas Formating Testing #1"
+
+    # Outputs the Dataframe...
     unit_text = "Rememeber: Square Units (SU) & Units (U)"
 
-    to_write = [file_name_inputed, unit_text, question_answer_text]
+    file_name_decoration = f"***** {file_name_inputed} *****"
+
+
+    to_write = [file_name_decoration, unit_text, question_answer_text]
 
     # Write to file...
     # Creat file to hold data (add .txt extension)
@@ -208,7 +229,7 @@ if calculations_done >= 1:
     # Close File
     text_file.close()
 
-
+    print()
     for items in to_write:
         print(items)
         print()
