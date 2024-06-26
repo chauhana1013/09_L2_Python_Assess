@@ -65,10 +65,10 @@ def rounding(variable):
 def not_blank(question):
 
     while True:
-        response = input(question).strip(None)
+        response = input(question).isspace()
 
         # If user's response is blank, program displays this message
-        if response == "":
+        if response == "" or response == False:
             print("Sorry this can't be blank. Please try again")
         
         else:
@@ -145,6 +145,7 @@ while True:
                 print("This is an Impossible Triangle")
                 continue
             
+            # Heron's Law
             else:    
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
@@ -165,7 +166,6 @@ while True:
             height = rounding(height)
             shape_given = "Triangle"
             lengths_given = f"Base: {side1} Height: {height}"
-        
 
     else:
         length = num_check("Radius? ")

@@ -55,9 +55,6 @@ def num_check(number, error_message, exit_code):
             print(error_message)
 
 
-
-
-
 # Main Routine...
         
 print()
@@ -68,10 +65,12 @@ if yes_no_instructions == "yes":
 
 while True:
     print()
+    # Ask for User to input a shape
     chosen_shape = list_checker("Please select a shape (Circle, Square, Triangle, or Rectangle)? ", "shapes", "Please choose from: Circle (c), Square (s), Triangle (t), or Rectangle (r)\n")
 
     print(f"You chose {chosen_shape}")
 
+    # Asks for Number
     number_entered = num_check("Number (Enter 'xxx' to quit)? ", "Please enter a number more than 0", "xxx")
     
     # If exit code entered, Program Ends
