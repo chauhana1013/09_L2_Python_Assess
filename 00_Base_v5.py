@@ -65,10 +65,10 @@ def rounding(variable):
 def not_blank(question):
 
     while True:
-        response = input(question).isspace()
+        response = input(question).strip(None)
 
         # If user's response is blank, program displays this message
-        if response == "" or response == False:
+        if response == "":
             print("Sorry this can't be blank. Please try again")
         
         else:
