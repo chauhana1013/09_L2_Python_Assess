@@ -79,13 +79,15 @@ def not_blank(question):
 print()
 yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no", "Please enter either yes or no...\n")
 
+# If user inputs 'yes', shows user Instructions
 if yes_no_instructions == "yes": 
     print("Instructions go here...")
 
 print()
+# Asks for File Name
 file_name_inputed = not_blank("File Name: ")
 
-
+# Lists Used for the Data Frame
 shape_list = []
 lengths_given_list = []
 area_list = []
@@ -96,6 +98,7 @@ calculations_done = 0
 # Main Routine...
 while True:
 
+    # Dictionary
     question_answer_dict = {
     "Shape": shape_list,
     "Length": lengths_given_list,

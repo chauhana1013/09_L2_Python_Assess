@@ -33,6 +33,7 @@ def list_checker(question, chosen_list, error_message):
         # Else print error message
         print(error_message)
 
+
 # Checks User Input is a number
 def num_check(number):
     while True:
@@ -49,6 +50,7 @@ def num_check(number):
         except ValueError:
             print("Please enter a number more than 0")
 
+
 # Rounds the number depending on if the number is whole or has decimals
 def rounding(variable):
     
@@ -59,13 +61,31 @@ def rounding(variable):
             variable = round(variable, 2)
         return variable
 
+# Checks that user response is not blank
+def not_blank(question):
+
+    while True:
+        response = input(question).strip(None)
+
+        # If user's response is blank, program displays this message
+        if response == "":
+            print("Sorry this can't be blank. Please try again")
+        
+        else:
+            return response
+
+
 # Main Routine...
 print()
 yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no", "Please enter either yes or no...\n")
 
-# Lists Used for the Data Frame
+# If user inputs 'yes', shows user Instructions
 if yes_no_instructions == "yes": 
     print("Instructions go here...")
+
+print()
+# Asks for File Name
+file_name_inputed = not_blank("File Name: ")
 
 # Lists Used for the Data Frame
 shape_list = []
@@ -94,24 +114,27 @@ while True:
         break
 
     # Depending on chosen shape, program asks different lengths
-    if chosen_shape == "square":
-        length = num_check("Length? ")
-        area = length * length
-        perimeter = length * 4
-        length = rounding(length)
-        shape_given = "Square"
-        lengths_given = f"Length: {length}"
+    if chosen_shape == "square" or chosen_shape == "rectangle":
+            
+        if chosen_shape == "square":    
+            length = num_check("Length? ")
+            height = length
+            length = rounding(length)
+            shape_given = "Square"
+            lengths_given = f"Length: {length}"
 
-    elif chosen_shape == "rectangle":
-        length = num_check("Length? ")
-        height = num_check("Width? ")
+        else:
+            length = num_check("Length? ")
+            height = num_check("Width? ")
+            length = rounding(length)
+            height = rounding(height)
+            shape_given = "Rectangle"
+            lengths_given = f"Length: {length} Width: {height}"
+        
+        # Calculates the Area and Perimeter 
+        # For both Square and Rectangle
         area = length * height
         perimeter = (length + height) * 2
-        length = rounding(length)
-        height = rounding(height)
-        shape_given = "Rectangle"
-        lengths_given = f"Length: {length} Width: {height}"
-
     
     elif chosen_shape == "triangle":
         # Asks user if they have all three sides of the triangle
@@ -127,6 +150,7 @@ while True:
             if side1 + side2 < side3 or side3 + side2 < side1 or side3 + side1 < side2:
                 print("This is an Impossible Triangle")
                 continue
+            
             # Heron's Law
             else:    
                 perimeter = side1 + side2 + side3  
@@ -148,7 +172,6 @@ while True:
             height = rounding(height)
             shape_given = "Triangle"
             lengths_given = f"Base: {side1} Height: {height}"
-        
 
     else:
         length = num_check("Radius? ")
@@ -158,7 +181,7 @@ while True:
         shape_given = "Circle"
         lengths_given = f"Radius: {length}"
         
-    
+    # Rounda the Area and The Perimeter
     area = rounding(area)
 
     if perimeter == "N/A":
@@ -184,14 +207,35 @@ while True:
 
 # Only displays the Data Frame if 1 or more calculations have been done
 if calculations_done >= 1:
-    question_answer_frame = pandas.DataFrame(question_answer_dict).set_index("Shape") 
-    
+    question_answer_frame = pandas.DataFrame(question_answer_dict).set_index("Shape")
+
+
+    # Change Dataframe to String (so it can be written to a txt file)
+    question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
+
+
     # Outputs the Dataframe...
-    file_name_inputed = "Pandas Formating Testing #1"
     unit_text = "Rememeber: Square Units (SU) & Units (U)"
 
-    to_write = [file_name_inputed, unit_text, question_answer_frame]
+    file_name_decoration = f"***** {file_name_inputed} *****"
 
+
+    to_write = [file_name_decoration, unit_text, question_answer_text]
+
+    # Write to file...
+    # Creat file to hold data (add .txt extension)
+    file_name = f"{file_name_inputed}.txt"
+    text_file = open(file_name, "w+")
+
+    # Heading
+    for item in to_write:
+        text_file.write(item)
+        text_file.write("\n\n")
+
+    # Close File
+    text_file.close()
+
+    print()
     for items in to_write:
         print(items)
         print()
