@@ -76,28 +76,34 @@ def not_blank(question):
 
 
 # Main Routine...
-print("🧮🧮🧮 Welcome to the Area & Perimeter Calculator 🧮🧮🧮")
-
-
+print()
+print("🧮🧮🧮  Welcome to the Area & Perimeter Calculator 🧮🧮🧮")
 print()
 yes_no_instructions = list_checker("Do want to read the instructions? ", "yes_no", "Please enter either yes or no...\n")
 
 # If user inputs 'yes', shows user Instructions
 if yes_no_instructions == "yes":
-    print()
-    print("📢📢📢 Area Perimeter Calculator Instructions 📢📢📢")
-    print("Hey User, I see you're new here")
-    print()
-    print("1️⃣ Enter the Name you want for the File ")
-    print("2️⃣ Select from the following Shapes:")
-    print()
-    print("❗Circle (c) , Square (s) , Triangle (t) or Rectangle (r)")
-    print("❗If you would like to Quit then enter 'xxx' or 'x' when asked for shape")
-    print()
-    print("💡When you quit, we will display a table for every calculation that was done💡")
-    print("💡This table will be automatically saved as a text file for you💡")
-    print()
-    print("👍👍👍 Hope You Enjoy, User !!! 👍👍👍")
+    print('''
+        
+📢📢📢 Area Perimeter Calculator Instructions 📢📢📢 
+        
+        Hey User, I see you're new here:
+        
+    1️⃣  Enter the Name you want for the File 
+    2️⃣  Select from the following Shapes:
+
+     ❗Circle (c) , Square (s) , Triangle (t) or Rectangle (r)
+     ❗If you would like to Quit then enter 'xxx' or 'x' when asked for shape
+          
+    3️⃣  Enter Measurements / Dimensions depending on the Shape
+    4️⃣  Area & Perimeter of Chosen Shape will be Displayed
+
+     💡 When you quit, we will display a table for every calculation that was done
+     💡 This table will be automatically saved as a text file for you
+
+    👍👍👍 Hope You Enjoy, User !!! 👍👍👍
+          
+        ''')
 
 print()
 # Asks for File Name
