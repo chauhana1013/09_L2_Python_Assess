@@ -115,27 +115,24 @@ while True:
 
     # Depending on chosen shape, program asks different lengths
     if chosen_shape == "square" or chosen_shape == "rectangle":
-            
-        if chosen_shape == "square":    
-            length = num_check("Length? ")
-            height = length
-            length = rounding(length)
-            shape_given = "Square"
-            lengths_given = f"Length: {length}"
+        length = num_check("Length? ")    
 
+        if chosen_shape == "square":    
+            height = length
+            shape_given = "Square"
+            width_needed = ""
         else:
-            length = num_check("Length? ")
             height = num_check("Width? ")
-            length = rounding(length)
-            height = rounding(height)
             shape_given = "Rectangle"
-            lengths_given = f"Length: {length} Width: {height}"
-        
-        # Calculates the Area and Perimeter 
-        # For both Square and Rectangle
+            width_needed = f" Width: {height}"
+
+        # Calculates the Area and Perimeter for both Square and Rectangle
         area = length * height
         perimeter = (length + height) * 2
-    
+        length = rounding(length)
+        height = rounding(height)
+        lengths_given = f"Length: {length}{width_needed}"
+
     elif chosen_shape == "triangle":
         # Asks user if they have all three sides of the triangle
         have_all_sides = list_checker("Do you have all lengths of three sides of the triangle? ", "yes_no", "Please enter either yes or no...\n")
@@ -151,7 +148,7 @@ while True:
                 print("This is an Impossible Triangle")
                 continue
             
-            # Heron's Law
+            # Heron's Law (Calculates the Area of the Triangle using the 3 sides)
             else:    
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
@@ -218,7 +215,6 @@ if calculations_done >= 1:
     unit_text = "Rememeber: Square Units (SU) & Units (U)"
 
     file_name_decoration = f"***** {file_name_inputed} *****"
-
 
     to_write = [file_name_decoration, unit_text, question_answer_text]
 

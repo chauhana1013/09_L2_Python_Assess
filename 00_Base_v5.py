@@ -148,7 +148,7 @@ while True:
                 print("This is an Impossible Triangle")
                 continue
             
-            # Heron's Law
+            # Heron's Law (Calculates the Area of the Triangle using the 3 sides)
             else:    
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
@@ -215,7 +215,6 @@ if calculations_done >= 1:
     unit_text = "Rememeber: Square Units (SU) & Units (U)"
 
     file_name_decoration = f"***** {file_name_inputed} *****"
-
 
     to_write = [file_name_decoration, unit_text, question_answer_text]
 

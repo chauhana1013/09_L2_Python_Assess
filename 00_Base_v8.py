@@ -1,7 +1,8 @@
 # Imports up here...
 import math
 import pandas
-
+import re
+from datetime import date
 # Functions go here... 
 
 # Checks if User's Input is in given list
@@ -67,11 +68,17 @@ def not_blank(question):
 
         # If user's response is blank, program displays this message
         if response == "":
-            print("Sorry this can't be blank. Please try again")
+            return ""
         
+        # Checks if User's Input on contains letters, numbers, underscores and dashes
         else:
-            return response
-
+            response = bool(re.match("^[A-Za-z0-9_-]*$", response))
+            # If any other type of character is found, displays error
+            if response is False:
+                print("The File Name inputted has blank space or a character we cannot accept")
+            
+            else:    
+                return response
 
 # Main Routine...
 print()
@@ -102,10 +109,6 @@ if yes_no_instructions == "yes":
     👍👍👍 Hope You Enjoy, User !!! 👍👍👍
           
         ''')
-
-print()
-# Asks for File Name
-file_name_inputed = not_blank("💾 File Name: ")
 
 # Lists Used for the Data Frame
 shape_list = []
@@ -230,13 +233,22 @@ if calculations_done >= 1:
     # Change Dataframe to String (so it can be written to a txt file)
     question_answer_text = pandas.DataFrame.to_string(question_answer_frame)
 
+    print()
+    # Asks for File Name
+    file_name_inputed = not_blank("💾 File Name: ")
+    
+    # If User's Response is blank, the name of the file will be today's date
+    if file_name_inputed == "":
+        # Get today's date, day, month and year as individual strings
+        today = date.today()
+        day = today.strftime("%d")
+        month = today.strftime("%m")
+        year = today.strftime("%Y")
+        file_name_inputed = f"APC_{day}_{month}_{year}"
 
     # Outputs the Dataframe...
     unit_text = "Rememeber: Square Units (SU) & Units (U)"
-
     file_name_decoration = f"***** {file_name_inputed} *****"
-
-
     to_write = [file_name_decoration, unit_text, question_answer_text]
 
     # Write to file...

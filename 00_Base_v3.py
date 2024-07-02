@@ -109,7 +109,7 @@ while True:
             if side1 + side2 < side3 or side3 + side2 < side1 or side3 + side1 < side2:
                 print("This is an Impossible Triangle")
                 continue
-            # Heron's Law
+            # Heron's Law (Calculates the Area of the Triangle using the 3 sides)
             else:    
                 perimeter = side1 + side2 + side3  
                 s = side1 + side2 + side3 / 2        
