@@ -112,7 +112,7 @@ while True:
             # Heron's Law (Calculates the Area of the Triangle using the 3 sides)
             else:    
                 perimeter = side1 + side2 + side3  
-                s = side1 + side2 + side3 / 2        
+                s = (side1 + side2 + side3) / 2          
                 area = math.sqrt(s * (s - side1) * (s - side2) * (s - side3))
                 lengths_given = f"Three Sides: {side1}, {side2}, {side3}"
 
