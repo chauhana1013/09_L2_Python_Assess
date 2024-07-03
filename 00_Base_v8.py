@@ -72,12 +72,11 @@ def not_blank(question):
         
         # Checks if User's Input on contains letters, numbers, underscores and dashes
         else:
-            response = bool(re.match("^[A-Za-z0-9_-]*$", response))
+            special_check = bool(re.match("^[A-Za-z0-9_-]*$", response))
             # If any other type of character is found, displays error
-            if response is False:
+            if special_check is False:
                 print("The File Name inputted has blank space or a character we cannot accept")
-            
-            else:    
+            else:
                 return response
 
 # Main Routine...
