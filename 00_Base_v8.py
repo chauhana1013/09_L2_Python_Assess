@@ -75,7 +75,7 @@ def not_blank(question):
             special_check = bool(re.match("^[A-Za-z0-9_-]*$", response))
             # If any other type of character is found, displays error
             if special_check is False:
-                print("The File Name inputted has blank space or a character we cannot accept")
+                print("The File Name inputted has blank space or a character we cannot accept. Please either enter a name or leave blank (The File Name will be left as today's date)")
             else:
                 return response
 
@@ -93,15 +93,17 @@ if yes_no_instructions == "yes":
         
         Hey User, I see you're new here:
         
-    1️⃣  Enter the Name you want for the File 
-    2️⃣  Select from the following Shapes:
-
+    1️⃣  Select from the following Shapes: 
+      
      ❗Circle (c) , Square (s) , Triangle (t) or Rectangle (r)
      ❗If you would like to Quit then enter 'xxx' or 'x' when asked for shape
           
-    3️⃣  Enter Measurements / Dimensions depending on the Shape
-    4️⃣  Area & Perimeter of Chosen Shape will be Displayed
+    2️⃣  Enter Measurements / Dimensions depending on the Shape
+    3️⃣  Area & Perimeter of Chosen Shape will be Displayed
+    4️⃣  Enter the Name you want for the File
 
+     💡 If File Name left blank, the name will be left as todays date
+          (Please do not use space or use special characters)
      💡 When you quit, we will display a table for every calculation that was done
      💡 This table will be automatically saved as a text file for you
 
@@ -234,7 +236,7 @@ if calculations_done >= 1:
 
     print()
     # Asks for File Name
-    file_name_inputed = not_blank("💾 File Name: ")
+    file_name_inputed = not_blank("💾 File Name (): ")
     
     # If User's Response is blank, the name of the file will be today's date
     if file_name_inputed == "":
@@ -268,4 +270,4 @@ if calculations_done >= 1:
         print(items)
         print()
 
-print("Program ends")
+print("Thank you User 😊")

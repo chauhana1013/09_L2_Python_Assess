@@ -49,8 +49,6 @@ def num_check(number):
         except ValueError:
             print("Please enter a number more than 0")
 
-
-
 # Main Routine...
         
 print()
